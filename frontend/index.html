@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RoomAI 3D - Interior Design Studio</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="logo">RoomAI</span>
+        <span class="badge">3D Interior Studio</span>
+      </div>
+      <div class="topbar-actions">
+        <select id="languageSelect" class="select">
+          <option value="fr">FR</option>
+          <option value="en">EN</option>
+        </select>
+        <button id="loginButton" class="ghost">Connexion</button>
+        <button id="upgradeButton" class="primary">Premium</button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="panel">
+        <h1 data-i18n="title">Concevez votre intérieur en 3D</h1>
+        <p class="subtitle" data-i18n="subtitle">
+          Analyse IA + rendu 3D temps réel + styles instantanés.
+        </p>
+
+        <div class="card">
+          <h2 data-i18n="uploadTitle">Analyse de votre pièce</h2>
+          <label class="upload">
+            <input type="file" id="roomImage" accept="image/*" />
+            <span data-i18n="uploadAction">Télécharger une photo</span>
+          </label>
+          <button id="analyzeButton" class="primary full" data-i18n="analyze">
+            Lancer l'analyse
+          </button>
+          <div class="progress" id="analysisStatus"></div>
+        </div>
+
+        <div class="card">
+          <h2 data-i18n="roomType">Type de pièce</h2>
+          <select id="roomType" class="select full">
+            <option value="living">Salon</option>
+            <option value="bedroom">Chambre</option>
+            <option value="kitchen">Cuisine</option>
+            <option value="bathroom">Salle de bain</option>
+            <option value="office">Bureau</option>
+            <option value="dining">Salle à manger</option>
+          </select>
+        </div>
+
+        <div class="card">
+          <h2 data-i18n="style">Style</h2>
+          <div class="chip-group" id="styleSelector">
+            <button class="chip" data-style="moderne">Moderne</button>
+            <button class="chip" data-style="minimaliste">Minimaliste</button>
+            <button class="chip" data-style="scandinave">Scandinave</button>
+            <button class="chip" data-style="industriel">Industriel</button>
+            <button class="chip" data-style="classique">Classique</button>
+            <button class="chip" data-style="japandi">Japandi</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2 data-i18n="profile">Profil</h2>
+          <div class="profile">
+            <img id="avatarPreview" class="avatar" src="https://placehold.co/96x96" alt="avatar" />
+            <div>
+              <input type="file" id="avatarUpload" accept="image/*" />
+              <input type="text" id="displayName" placeholder="Votre nom" />
+              <button id="saveProfile" class="ghost" data-i18n="save">Enregistrer</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="viewer">
+        <div class="viewer-toolbar">
+          <button id="toggleAutoRotate" class="ghost" data-i18n="autoRotate">
+            Auto-rotation
+          </button>
+          <button id="toggleFullscreen" class="ghost" data-i18n="fullscreen">
+            Plein écran
+          </button>
+          <button id="takeScreenshot" class="ghost" data-i18n="screenshot">
+            Screenshot
+          </button>
+        </div>
+        <div id="viewerContainer" class="viewer-canvas"></div>
+        <div class="viewer-footer">
+          <label>
+            <span data-i18n="light">Éclairage</span>
+            <input id="lightIntensity" type="range" min="0.5" max="2" step="0.1" value="1" />
+          </label>
+          <label>
+            <span data-i18n="zoom">Zoom</span>
+            <input id="zoomLevel" type="range" min="20" max="80" step="1" value="45" />
+          </label>
+        </div>
+        <div id="watermark" class="watermark">RoomAI Free</div>
+      </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="./i18n.js"></script>
+    <script src="./Viewer3D.js"></script>
+    <script src="./watermark.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
